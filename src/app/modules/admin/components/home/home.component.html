@@ -1,46 +1,52 @@
 <div class="container pt-5 pb-5">
-    <div class="col-12">
-        <div class="d-flex flex-wrap justify-content-between">
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
-                </div>
+    <!--
+    <div class="col-6">
+        <div class="card shadow mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Employee List</h5>
+                
             </div>
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    -->
+    <div class="row">
+        <div class="col8">
+            <div class="card">
+                <div class="card-header">
+                    <h6>List</h6>
                 </div>
-            </div>
-            <div class="card shadow mt-2">
                 <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
+                    <div class="row">
+                        <div class="col-12">
+                            <table style="border-collapse:collapse ;">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Location
+                                        </th>
+                                        <th>
+                                            Contact
+                                        </th>
+                                    </tr>
+                                </thead>
+                                    <tr *ngFor="let data of empData">
+                                        <td>
+                                            {{ data.name }}
+                                        </td>
+                                        <td>
+                                            {{ data.location }}
+                                        </td>
+                                        <td>
+                                            {{ data.contact }}
+                                        </td>
+                                    </tr>
+                                
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

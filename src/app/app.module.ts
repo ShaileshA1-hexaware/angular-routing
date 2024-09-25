@@ -1,4 +1,4 @@
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -8,6 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {CommonModule} from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './services/data.service';
 
 
 @NgModule({
@@ -23,10 +25,11 @@ import {CommonModule} from '@angular/common';
       AppRoutingModule,
       FontAwesomeModule,
       ReactiveFormsModule,
-      FormsModule
+      FormsModule,
+     
     ],
-    providers: [],
+    providers: [DataService],
     bootstrap: [AppComponent],
-    schemas:[CUSTOM_ELEMENTS_SCHEMA]
+    schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
   })
   export class AppModule {}
