@@ -7,7 +7,7 @@
                     <h2>Login</h2>
                 </div>
                 
-                <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> -->
+                 <form [formGroup]="loginForm">
                     <div class="form-group">
                         <input type="email" id="email" placeholder="Email" class="form-control" formControlName="email"
                             name="email" />
@@ -16,8 +16,8 @@
                         <input type="password" id="password" placeholder="Password" class="form-control"
                             formControlName="password" name="password" />
                     </div>
-                    <input type="submit" class="btn btn-primary w-100" value="Login" name="">
-               <!-- </form> -->
+                    <input type="submit" (click)="onSubmit()" class="btn btn-primary w-100" value="Login" name="">
+               </form> 
             </div>
             <!--
             <div class="card-footer text-right">
