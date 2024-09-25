@@ -14,6 +14,9 @@
     "@angular/forms": "^18.1.0",
     "@angular/platform-browser": "^18.1.0",
     "@angular/router": "^18.1.0",
+    "@fortawesome/angular-fontawesome": "^0.15.0",
+    "@ng-bootstrap/ng-bootstrap": "^17.0.1",
+    "bootstrap": "^4.5.0",
     "rxjs": "^7.8.1",
     "tslib": "^2.5.0",
     "zone.js": "~0.14.0"
