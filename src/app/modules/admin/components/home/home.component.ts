@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from '../../../../services/data.service';
+import { Employee } from '../../../../models/Employee'
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,8 @@ export class HomeComponent implements OnInit{
   public empForm!:FormGroup;
   public empList:any=[];
   public isEdit:boolean=false;
+
+  public empObject:Employee = new Employee();
 
   constructor(private dataservice:DataService){
     this.createForm();
@@ -33,10 +36,10 @@ export class HomeComponent implements OnInit{
   }
   createForm(){
     this.empForm = new FormGroup({
-      empId:new FormControl(0),
-      empName : new FormControl(),
-      empLocation:new FormControl(),
-      empContact:new FormControl()
+      empId:new FormControl(this.empObject.empId),
+      empName : new FormControl(this.empObject.empName),
+      empLocation:new FormControl(this.empObject.empLocation),
+      empContact:new FormControl(this.empObject.empContact)
     })
   }
   saveData(){
@@ -52,8 +55,10 @@ export class HomeComponent implements OnInit{
     const oldData = localStorage.getItem('emplData');
     if(oldData!=null) {
       const parseData = JSON.parse(oldData);
-      console.log('parseData.length ',parseData.length);
-      this.empForm.controls['empId'].setValue(parseData.length +1);
+     
+      let id = parseData.length+1;
+      console.log("parseData.length ",parseData.length , ' id ',id);
+      this.empForm.controls['empId'].setValue(id);
       this.empList.unshift(this.empForm.value);
     } else {
       this.empList.unshift(this.empForm.value);
@@ -61,24 +66,34 @@ export class HomeComponent implements OnInit{
     localStorage.setItem('emplData',JSON.stringify(this.empList));
     this.empForm.reset();
   }
-  onEdit(_formData:any){
-    this.createForm();
-    this.empForm.patchValue(_formData);
+  onEdit(item:Employee){
+    
+    //this.empForm.patchValue(_formData);
+    this.empObject = item;
     this.isEdit = true;
+    this.createForm();
   }
   onUpdate(){
-    const record = this.empList.find((m:any)=>m.empId==this.empForm.controls['empId'].value);
+    //const record = this.empList.find((m:any)=>m.empId==this.empForm.controls['empId'].value);
+    const record = this.empList.find((m:Employee)=>m.empId == this.empForm.controls['empId'].value);
     console.log('record ',record);
     if(record!=undefined) {
-      record.empName = this.empForm.controls['empName'];
-      record.empLocation = this.empForm.controls['empLocation'];
-      record.empContact = this.empForm.controls['empContact'];
+      record.empName = this.empForm.controls['empName'].value;
+      record.empLocation = this.empForm.controls['empLocation'].value;
+      record.empContact = this.empForm.controls['empContact'].value;
       this.isEdit = false;
     }
+    console.log('this.empList ',this.empList);
     localStorage.setItem('emplData',JSON.stringify(this.empList));
+    this.empObject = new Employee();
     this.empForm.reset();
   }
-  onDelete(formData:any){
-
+  onDelete(id:number){
+    const isdelete = confirm('are you sure delete ?');
+    if(isdelete){
+      const index = this.empList.findIndex((m:any)=>m.empId ==id);
+      this.empList.splice(index,1);
+      localStorage.setItem('emplData',JSON.stringify(this.empList));
+    }
   }
 }
