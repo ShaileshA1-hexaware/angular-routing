@@ -10,15 +10,15 @@
     </div>
     -->
     <div class="row">
-        <div class="col8">
+        <div class="col-7">
             <div class="card">
                 <div class="card-header">
-                    <h6>List</h6>
+                    <h6>User List</h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <table style="border-collapse:collapse ;">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>
@@ -30,17 +30,24 @@
                                         <th>
                                             Contact
                                         </th>
+                                        <th>
+                                            Actions
+                                        </th>
                                     </tr>
                                 </thead>
-                                    <tr *ngFor="let data of empData">
+                                    <tr *ngFor="let data of empList">
                                         <td>
-                                            {{ data.name }}
+                                            {{ data.empName }}
                                         </td>
                                         <td>
-                                            {{ data.location }}
+                                            {{ data.empLocation }}
                                         </td>
                                         <td>
-                                            {{ data.contact }}
+                                            {{ data.empContact }}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary" (click)="onEdit(data)">Edit</button> &nbsp;
+                                            <button class="btn btn-danger" (click)="onDelete(data)">Delete</button>
                                         </td>
                                     </tr>
                                 
@@ -49,6 +56,40 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-5">
+            <div class="card">
+                <div class="card-header">
+                    <h6>User Addition</h6>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="empForm">
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Enter Name</label>
+                            <input type="text" class="form-control" formControlName="empName">
+                        </div>
+                        <div class="col-6">
+                            <label>Enter Location</label>
+                            <input type="text" class="form-control" formControlName="empLocation">
+                        </div>
+                        <div class="col-6">
+                            <label>Enter Contact</label>
+                            <input type="text" class="form-control" formControlName="empContact">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 2%;">
+                        <div class="col-4 text-center">
+                            <button class="btn btn-secondary">Reset</button>
+                        </div>
+                        <div class="col-4 text-center">
+                            <button *ngIf='!isEdit' class="btn btn-success" (click)="saveData()">Save</button>
+                            <button *ngIf='isEdit' class="btn btn-success" (click)="onUpdate()">Update</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                </div>
         </div>
     </div>
 </div>

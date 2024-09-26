@@ -11,4 +11,7 @@ export class DataService {
   getData() {
     return this.http.get(Constants.mockURL)
   }
+  addData(_formData:any){
+    return this.http.post(Constants.mockURL,_formData);
+  }
 }
